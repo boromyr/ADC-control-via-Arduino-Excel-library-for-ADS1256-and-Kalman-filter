@@ -1,7 +1,6 @@
 /*
   Created:	26/03/2020
 	Author:     Davide Romeo davideromeo93k@gmail.com
-	Based on the works of Flydroid, dariosalvi78, chepo92, adienakhmad.
 */
 
 #include "ADS1256.h"
@@ -26,21 +25,19 @@ void ADS1256::begin()
   pinMode(PIN_RESET, OUTPUT);
   digitalWrite(PIN_CS, LOW);
   digitalWrite(PIN_RESET, LOW);
-  delay(1);
   digitalWrite(PIN_RESET, HIGH);
-  delay(1);
   SPI.begin();
-  ADS1256::waitDRDY();
+  waitDRDY();
   SPI.beginTransaction(SPISettings(SPI_SPEED, MSBFIRST, SPI_MODE1));
-  delayMicroseconds(10);
-  ADS1256::sendCMD(RESET);
-  ADS1256::sendCMD(SYNC);
-  ADS1256::SetPGA(PGA_1);
-  ADS1256::SetSPS(SPS_15);
-  ADS1256::sendCMD(SELFCAL);
-  ADS1256::waitDRDY();
-  ADS1256::sendCMD(SYSGCAL);
-  ADS1256::waitDRDY();
+  DELAY;
+  sendCMD(RESET);
+  sendCMD(SYNC);
+  SetPGA(PGA_1);
+  SetSPS(SPS_15);
+  sendCMD(SELFCAL);
+  waitDRDY();
+  sendCMD(SYSGCAL);
+  waitDRDY();
 }
 
 /*Inizializza ADS1256, scegli manualmente le impostazioni GAIN e SPS. Autocalibrazione*/
@@ -56,29 +53,29 @@ void ADS1256::begin(unsigned char SPS, unsigned char GAIN)
   SPI.begin();
   waitDRDY();
   SPI.beginTransaction(SPISettings(SPI_SPEED, MSBFIRST, SPI_MODE1));
-  delayMicroseconds(10);
-  ADS1256::sendCMD(RESET);
-  ADS1256::sendCMD(SYNC);
-  ADS1256::SetPGA(GAIN);
-  ADS1256::SetSPS(SPS);
-  ADS1256::sendCMD(SELFCAL);
-  ADS1256::waitDRDY();
-  ADS1256::sendCMD(SYSGCAL);
-  ADS1256::waitDRDY();
+  DELAY;
+  sendCMD(RESET);
+  sendCMD(SYNC);
+  SetPGA(GAIN);
+  SetSPS(SPS);
+  sendCMD(SELFCAL);
+  waitDRDY();
+  sendCMD(SYSGCAL);
+  waitDRDY();
 }
 
 /*Scrivi nel registro dell'ADS1256 all'indirizzo e valore scelti. Test di successo della funzione via monitor seriale*/
 /*Write in the ADS1256 register at the chosen address and value. Success test of the function via serial monitor*/
 void ADS1256::writeRegister(unsigned char Adress, unsigned char DATA)
 {
-  ADS1256::waitDRDY();
+  waitDRDY();
   SPI.beginTransaction(SPISettings(SPI_SPEED, MSBFIRST, SPI_MODE1));
   digitalWrite(PIN_CS, LOW);
-  delayMicroseconds(10);
+  DELAY;
   SPI.transfer(WREG | Adress);
   SPI.transfer(WAKEUP);
   SPI.transfer(DATA);
-  delayMicroseconds(10);
+  DELAY;
   if (DATA != ADS1256::readRegister(Adress))
   {
     Serial.print("Write to Register 0x");
@@ -93,16 +90,16 @@ void ADS1256::writeRegister(unsigned char Adress, unsigned char DATA)
 /*Read current value in the register at the specified address*/
 unsigned char ADS1256::readRegister(unsigned char regAdress)
 {
-  ADS1256::waitDRDY();
+  waitDRDY();
   unsigned char buffer;
   SPI.beginTransaction(SPISettings(SPI_SPEED, MSBFIRST, SPI_MODE1));
   digitalWrite(PIN_CS, LOW);
-  delayMicroseconds(10);
+  DELAY;
   SPI.transfer(RREG | regAdress);
   SPI.transfer(WAKEUP);
-  delayMicroseconds(10);
+  DELAY;
   buffer = SPI.transfer(NOP);
-  delayMicroseconds(10);
+  DELAY;
   SPI.endTransaction();
   return buffer;
 }
@@ -111,12 +108,12 @@ unsigned char ADS1256::readRegister(unsigned char regAdress)
 /*Send command to ADS1256*/
 void ADS1256::sendCMD(unsigned char cmd)
 {
-  ADS1256::waitDRDY();
+  waitDRDY();
   SPI.beginTransaction(SPISettings(SPI_SPEED, MSBFIRST, SPI_MODE1));
   digitalWrite(PIN_CS, LOW);
-  delayMicroseconds(10);
+  DELAY;
   SPI.transfer(cmd);
-  delayMicroseconds(10);
+  DELAY;
   SPI.endTransaction();
 }
 
@@ -124,36 +121,36 @@ void ADS1256::sendCMD(unsigned char cmd)
 /*Set read speeds. Verification of writing in the register and self-calibration*/
 void ADS1256::SetSPS(unsigned char SPS)
 {
-  ADS1256::waitDRDY();
+  waitDRDY();
   writeRegister(DRATE, SPS);
   if (SPS == ADS1256::readRegister(DRATE))
   {
     Serial.print("SPS set to: ");
-    Serial.println(ADS1256::getSPS());
+    Serial.println(getSPS());
   }
-  delayMicroseconds(10);
-  ADS1256::sendCMD(SELFCAL);
-  ADS1256::waitDRDY();
-  ADS1256::sendCMD(SYSGCAL);
-  ADS1256::waitDRDY();
+  DELAY;
+  sendCMD(SELFCAL);
+  waitDRDY();
+  sendCMD(SYSGCAL);
+  waitDRDY();
 }
 
 /*Setta gain. Verifica di scrittura nel registro e autocalibrazione*/
 /*Set gain. Verification of writing in the register and self-calibration*/
 void ADS1256::SetPGA(unsigned char GAIN)
 {
-  ADS1256::waitDRDY();
+  waitDRDY();
   writeRegister(ADCON, GAIN);
   if (GAIN == ADS1256::readRegister(ADCON))
   {
     Serial.print("PGA set to: ");
-    Serial.println(ADS1256::getPGA());
+    Serial.println(getPGA());
   }
-  delayMicroseconds(10);
-  ADS1256::sendCMD(SELFCAL);
-  ADS1256::waitDRDY();
-  ADS1256::sendCMD(SYSGCAL);
-  ADS1256::waitDRDY();
+  DELAY;
+  sendCMD(SELFCAL);
+  waitDRDY();
+  sendCMD(SYSGCAL);
+  waitDRDY();
   _pga = 1 << GAIN;
 }
 
@@ -161,7 +158,7 @@ void ADS1256::SetPGA(unsigned char GAIN)
 /*Returns the current reading speed value*/
 int ADS1256::getSPS()
 {
-  float sps;
+  int sps;
   int buffer = readRegister(DRATE);
   switch (buffer)
   {
@@ -211,42 +208,29 @@ unsigned char ADS1256::getPGA()
 /*Choose differential reading channel, specifying CH + and CH-*/
 void ADS1256::setChannel(unsigned char AIN_P, unsigned char AIN_N)
 {
-  ADS1256::waitDRDY();
+  waitDRDY();
   unsigned char AIN = AIN_P | AIN_N;
-  ADS1256::writeRegister(MUX, AIN);
-  delayMicroseconds(10);
+  writeRegister(MUX, AIN);
+  sendCMD(SYNC);
+  sendCMD(WAKEUP);
+  DELAY;
 }
 
 /*Scegli canale di lettura assoluta CH+, CH- settato automaticamente al PIN N_AINCOM(PIN 4 ADS1256)*/ 
 /*Choose absolute reading channel CH +, CH- automatically set to PIN N_AINCOM (PIN 4 ADS1256)*/
 void ADS1256::setChannel(unsigned char channel)
 {
-  ADS1256::setChannel(channel, N_AINCOM);
+  setChannel(channel, N_AINCOM);
 }
 
 /*Leggi milliolt al canale 0*/
-double ADS1256::read_mV()
+double ADS1256::read_CH0()
 {
   long value;
   unsigned char _highByte, _midByte, _lowByte;
   unsigned char channel = P_AIN0 | N_AINCOM;
-  ADS1256::writeRegister(MUX, channel);
-  SPI.transfer(SYNC);
-  delayMicroseconds(10);
-  SPI.transfer(WAKEUP);
-  delayMicroseconds(10);
-  SPI.transfer(RDATA);
-  delayMicroseconds(10);
-  _highByte = SPI.transfer(WAKEUP);
-  _midByte = SPI.transfer(WAKEUP);
-  _lowByte = SPI.transfer(WAKEUP);
-
-  value = ((long)_highByte << 16) + ((long)_midByte << 8) + ((long)_lowByte);
-  if (value > 0x7fffff)
-  {
-    value = (16777215ul - value) + 1;
-  }
-  return value * (2000 * V_REF / 0x7FFFFF) / _pga;
+  writeRegister(MUX, channel);
+  return read_value();
 }
 
 /*Leggi millivolt specificando CH+. CH- settato automaticamente al PIN N_AINCOM(PIN 4 ADS1256)*/
@@ -256,23 +240,8 @@ double ADS1256::read_mV(unsigned char P_AIN)
   long value;
   unsigned char _highByte, _midByte, _lowByte;
   unsigned char channel = P_AIN | N_AINCOM;
-  ADS1256::writeRegister(MUX, channel);
-  SPI.transfer(SYNC);
-  delayMicroseconds(10);
-  SPI.transfer(WAKEUP);
-  delayMicroseconds(10);
-  SPI.transfer(RDATA);
-  delayMicroseconds(10); 
-  _highByte = SPI.transfer(WAKEUP);
-  _midByte = SPI.transfer(WAKEUP);
-  _lowByte = SPI.transfer(WAKEUP);
-
-  value = ((long)_highByte << 16) + ((long)_midByte << 8) + ((long)_lowByte);
-  if (value > 0x7fffff)
-  {
-    value = (16777215ul - value) + 1;
-  }
-  return value * (2000 * V_REF / 0x7FFFFF) / _pga;
+  writeRegister(MUX, channel);
+  return read_value();
 }
 
 /*Leggi millivolt differenziali ai CH+  CH- scelti*/
@@ -282,32 +251,31 @@ double ADS1256::read_mV(unsigned char P_AIN, unsigned char N_AIN)
   long value;
   unsigned char _highByte, _midByte, _lowByte;
   unsigned char channel = P_AIN | N_AIN;
-  ADS1256::writeRegister(MUX, channel);
+  writeRegister(MUX, channel);
+  return read_value();
+}
+
+double ADS1256::read_value()
+{
+  long value;
+  unsigned char _highByte, _midByte, _lowByte;
   SPI.transfer(SYNC);
-  delayMicroseconds(10);
-  SPI.transfer(WAKEUP);
-  delayMicroseconds(10);
+  DELAY;
   SPI.transfer(RDATA);
-  delayMicroseconds(10);
+  DELAY;
   _highByte = SPI.transfer(WAKEUP);
   _midByte = SPI.transfer(WAKEUP);
   _lowByte = SPI.transfer(WAKEUP);
 
   value = ((long)_highByte << 16) + ((long)_midByte << 8) + ((long)_lowByte);
-  if (value > 0x7fffff)
+  /*if (value > 0x7fffff)
   {
     value = (16777215ul - value) + 1;
-  }
+  }*/
   return value * (2000 * V_REF / 0x7FFFFF) / _pga;
-}
-
-/*Non testata / Not tested*/
-void ADS1256::reset()
-{
-  ADS1256::sendCMD(RESET);
 }
 
 void ADS1256::waitDRDY()
 {
-  while (digitalRead(PIN_DRDY)){}
+  while (digitalRead(PIN_DRDY) == HIGH){}
 }
