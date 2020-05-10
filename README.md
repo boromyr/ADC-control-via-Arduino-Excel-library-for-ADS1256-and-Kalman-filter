@@ -1,1 +1,0 @@
-# ADC-control-via-Arduino-Excel-library-for-ADS1256-and-Kalman-filter
