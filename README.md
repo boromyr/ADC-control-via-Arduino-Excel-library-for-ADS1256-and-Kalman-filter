@@ -34,8 +34,6 @@
 * [Note](#Note)
 * [Contatti](#Contatti)
 
-- 
-
 ### About the library
 
 This library was written for the use of the ADS1256 through Arduino and Excel, with the aim of maximizing user control in real time.
