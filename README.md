@@ -26,7 +26,7 @@
   * [Instructions](#Instructions)
   * [Functions](#Functions)
 * [rExcel](#rExcel)
-  * [Excel commands](#Exce-commands)
+  * [Excel commands](#Excel-commands)
   * [Functionality](#Functionality)
 * [Kalman filter](#Kalman-filter)
 * [Links](#Links)
