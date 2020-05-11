@@ -182,7 +182,7 @@ It should also work in commercial versions already ready on board, send me feedb
 
 If you liked my project, it was useful to you, or you encountered bugs, you can contact me by email. Tell me about your project or send me a photo if you like.
 
-### Idee future
+### Incoming
 
 Update for the use of the ADS1248; real-time control of stepper motors (already in progress); additions of scientific tools for data analysis (currently being worked on in the field of spectroscopy); test on ESP32...
 
