@@ -65,7 +65,7 @@ void loop()
 	if (_intput == 1) {
 		intput();
 	}
-	myExcel.get("rExcel", "X19", value);      //Ciclo "c" per inviare le nuove impostazioni ad Arduino.
+	myExcel.get("rExcel", "X19", value);      //Ciclo "if" per inviare le nuove impostazioni ad Arduino.
 	int _output = atoi(value);                //ATTENZIONE: se disabilitato l'ADS1256 riceverà continuamente nuove impostazioni per SPS e PGA,
 	if (_output == 1) {                       // ricalibrando ad ogni lettura, causando ritardi ed errori.
 		output();                             //"if" cycle to send the new settings to Arduino.
@@ -80,7 +80,7 @@ void intput()
 	loopTime = millis();
 	if ((loopTime - time1) >= outputTiming) {
 		time1 = loopTime;
-		/*int count = 0;                    //Ciclo "ciao" per la media dei conteggi avvenuti in un ciclo outputTiming. 
+		/*int count = 0;                    //Ciclo "for" per la media dei conteggi avvenuti in un ciclo outputTiming. 
 		double sum = 0;                     //Il numero dei conteggi N è calcolato automaticamente da Excel in modo da rientrare sempre in un ciclo outputTiming.
 		for (int i = 0; i < N; i++)         //Valori di SPS troppo bassi possono far rallentare il ciclo. Utile per SPS elevati, anche se con Arduino sono arrivato a massimo 3750SPS.
 		{                                   //"for" cycle for the average of the counts occurred in an outputTiming cycle.
