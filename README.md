@@ -17,9 +17,7 @@
 
 - Kalman filter for noise filtering, setting of parameters R and Q.
 
-  ### **Indice**
-
-
+### **Indice**
 
 * [Features](#Features)
 * [About the library](#About-the-library)
