@@ -195,6 +195,8 @@ Update for the use of the ADS1248; real-time control of stepper motors (already 
 ### Contacts
 
 Project of: Davide Romeo
+
+
 email: davideromeo93k@gmail.com
 
 
