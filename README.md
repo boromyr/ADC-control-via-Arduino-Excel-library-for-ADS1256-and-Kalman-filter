@@ -96,7 +96,7 @@ ADS.read_mV(P_AIN0);
 
 ### rExcel
 
-rExcel is a communication protocol for Arduino that transforms a normal Excel worksheet into a serial monitor in turn divided by the number of cells in the sheet, which all operate independently of each other. Through it it is possible to collect data in real time from Arduino, or to send multiple commands, execute sections of code or pause Arduino void loop()[(virtually)](#Funzioni-usate-in-questo-lavoro).
+rExcel is a communication protocol for Arduino that transforms a normal Excel worksheet into a serial monitor in turn divided by the number of cells in the sheet, which all operate independently of each other. Through it it is possible to collect data in real time from Arduino, or to send multiple commands, execute sections of code or pause Arduino void loop().
 The executable file contains the drivers for the library, the code examples for Arduino and a basic rExcel sheet with integrated VBA functions, as well as all the instructions on its functions and its use.
 
 #### Excel commands
