@@ -172,7 +172,9 @@ The filter is regulated by the R and Q parameters. For a practical use the filte
 
 ### Test
 
-- Library tested on Arduino uno, ADS1256 on breadboard with 8.00 Mhz quartz oscillator and 2 18 pF capacitors.
+- Library tested on Arduino uno, ADS1256 on breadboard with 8.00 Mhz quartz oscillator and 2 18 pF capacitors;
+- Excel 2019 x64 on Windows 10 x64.
+
 
 It should also work in commercial versions already ready on board, send me feedback by email if it also works with other microcontrollers and boards, I will update this list.
 
