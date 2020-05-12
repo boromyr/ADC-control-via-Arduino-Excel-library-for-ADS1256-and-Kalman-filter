@@ -3,7 +3,7 @@
 ![](https://i.ibb.co/SfZ5TZX/arduino-4-569256.png)![](https://i.ibb.co/g7kcpp4/texas-instruments-logo-vector-01-1.png)![](https://insmac.org/uploads/posts/2019-06/1561383549_xcel.png)
 ----
 
-![](https://img.shields.io/badge/Version-1.0-green)
+![](https://img.shields.io/badge/Version-1.0-brightgreen) ![](https://img.shields.io/badge/Created-12%2F04%2F2020-blue)
 
 ### Features
 
@@ -192,9 +192,7 @@ Update for the use of the ADS1248; real-time control of stepper motors (already 
 
 ### Contacts
 
-Project of: Davide Romeo    
-
-Date: 12/04/2020
+Project of: Davide Romeo
 
 email: davideromeo93k@gmail.com
 
