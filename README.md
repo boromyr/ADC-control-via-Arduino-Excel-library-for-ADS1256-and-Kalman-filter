@@ -42,7 +42,7 @@ The communication library between Arduino and Excel was written by  [Roberto Val
 
 ### Download 
 
-| Ultimo                                                       | Releases                                                     |
+| Last                                                       | Releases                                                     |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | [1.0](https://github.com/boromyr/ADC-control-via-Arduino-Excel-library-for-ADS1256-and-Kalman-filter/releases/download/1.0/ADS1256.rExcel.2.1.rar) | [view](https://github.com/boromyr/ADC-control-via-Arduino-Excel-library-for-ADS1256-and-Kalman-filter/releases) |
 
