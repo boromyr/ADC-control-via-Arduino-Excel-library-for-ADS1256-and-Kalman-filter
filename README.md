@@ -184,7 +184,9 @@ If you liked my project, it was useful to you, or you encountered bugs, you can 
 
 ### Incoming
 
-Update for the use of the ADS1248; real-time control of stepper motors (already in progress); additions of scientific tools for data analysis (currently being worked on in the field of spectroscopy); test on ESP32...
+Update for the use of the ADS1248; real-time control of stepper motors (already in progress); additions of scientific tools for data analysis (currently being worked on in the field of spectroscopy); test on ESP32;
+Update with the new rExcel 3.0...
+
 
 ### Note
 
