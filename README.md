@@ -22,6 +22,7 @@
 * [Features](#Features)
 * [About the library](#About-the-library)
   * [Instructions](#Instructions)
+  * [Download](#Download)
   * [Functions](#Functions)
 * [rExcel](#rExcel)
   * [Excel commands](#Excel-commands)
@@ -38,6 +39,12 @@ This library was written for the use of the ADS1256 through Arduino and Excel, w
 It was also based on the works of Flydroid, dariosalvi78, chepo92 and adienakhmad.
 
 The communication library between Arduino and Excel was written by  [Roberto Valgolio](http://www.robertovalgolio.com/sistemi-programmi/arduino-excel), downloadable from his website, and is already present as an attachment without any modification. The Excel sheet has been modified by me with the addition of further functions for the control of the ADS1256. By modifying the Arduino code it is possible to control other digital modules, such as other ADCs (tested), digital potentiometers (tested), stepper motors (tested), DACs, optical or motion sensors.
+
+### Download 
+
+| Ultimo                                                       | Releases                                                     |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| [1.0](https://github.com/boromyr/ADC-control-via-Arduino-Excel-library-for-ADS1256-and-Kalman-filter/releases/download/1.0/ADS1256.rExcel.2.1.rar) | [view](https://github.com/boromyr/ADC-control-via-Arduino-Excel-library-for-ADS1256-and-Kalman-filter/releases) |
 
 
 ### Instructions
@@ -203,7 +210,9 @@ Project of: Davide Romeo
 email: davideromeo93k@gmail.com
 
 ### Changelog
-14/05/2020 - Add Arduino Excel 3.0  from http://www.robertovalgolio.com/sistemi-programmi/arduino-excel
+14/05/2020 - Add Arduino Excel 3.0  from http://www.robertovalgolio.com/sistemi-programmi/arduino-excel;
+
+16/05/2020 - Files moved to Releases, added download link;
 
 
 
