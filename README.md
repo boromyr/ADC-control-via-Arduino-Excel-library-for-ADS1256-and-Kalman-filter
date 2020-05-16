@@ -173,6 +173,8 @@ The filter is regulated by the R and Q parameters. For a practical use the filte
 ### Test
 
 - Library tested on Arduino uno, ADS1256 on breadboard with 8.00 Mhz quartz oscillator and 2 18 pF capacitors;
+
+- ADS1115, ADS1248;
 - Excel 2019 x64 on Windows 10 x64.
 
 
@@ -184,7 +186,7 @@ If you liked my project, it was useful to you, or you encountered bugs, you can 
 
 ### Incoming
 
-Update for the use of the ADS1248; real-time control of stepper motors (already in progress); additions of scientific tools for data analysis (currently being worked on in the field of spectroscopy); test on ESP32;
+Real-time control of stepper motors (already in progress); additions of scientific tools for data analysis (currently being worked on in the field of spectroscopy); test on ESP32;
 Update with the new rExcel 3.0...
 
 
