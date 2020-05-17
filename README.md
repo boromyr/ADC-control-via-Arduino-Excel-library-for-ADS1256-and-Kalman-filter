@@ -201,7 +201,7 @@ Real-time control of stepper motors (already in progress); additions of scientif
 
 - update with the new rExcel 3.0;
 
-- versione per ADS1115;
+- version for ADS1115;
 
 ### Note
 
