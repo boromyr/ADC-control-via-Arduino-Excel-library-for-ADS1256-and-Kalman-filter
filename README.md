@@ -15,7 +15,9 @@
 
 - Complete real-time control via Excel, data plot, dynamic graph, sampling time setting;
 
-- Kalman filter for noise filtering, setting of parameters R and Q.
+- Kalman filter for noise filtering, setting of parameters R and Q;
+
+- Configurable for all ADC;
 
 ### **Indice**
 
